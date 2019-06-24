@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SpiderGroupApp</string>
+
+    <string name="intent_message">intent_message</string>
+
+    <!-- fragment tags -->
+    <string name="fragment_gallery">Fragment Gallery</string>
+
+</resources>
