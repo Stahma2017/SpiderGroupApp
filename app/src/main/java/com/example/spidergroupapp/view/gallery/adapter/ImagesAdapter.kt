@@ -6,21 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.spidergroupapp.R
-import com.example.spidergroupapp.data.entity.Image
+import com.example.spidergroupapp.data.entity.Datum
 import kotlinx.android.synthetic.main.recycler_image_item.view.*
 import java.util.ArrayList
 
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
 
-    private var images: MutableList<Image> = ArrayList()
+    private var galleries: MutableList<Datum> = ArrayList()
 
    fun clear(){
-       images.clear()
+       galleries.clear()
        notifyDataSetChanged()
    }
 
-    fun addImages(images: List<Image>){
-        this.images.addAll(images)
+    fun addImages(galleries: List<Datum>){
+        this.galleries.addAll(galleries)
         notifyDataSetChanged()
     }
 
@@ -29,16 +29,17 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
         return ImageViewHolder(view)
     }
 
-    override fun getItemCount() = images.size
+    override fun getItemCount() = galleries.size
 
     override fun onBindViewHolder(vh: ImageViewHolder, i: Int) {
-        vh.bind(images[i])
+        vh.bind(galleries[i])
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(image: Image) {
+        fun bind(gallery: Datum) {
             Glide.with(itemView)
-                .load(image.link)
+                .load(gallery.images?.get(0)?.link)
+                .placeholder(R.drawable.ic_placeholder)
                 .fitCenter()
                 .into(itemView.imageView)
         }

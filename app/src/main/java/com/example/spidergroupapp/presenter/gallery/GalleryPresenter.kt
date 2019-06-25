@@ -40,7 +40,7 @@ class GalleryPresenter(
                 if (imagesResponse.data.isNullOrEmpty()) {
                     view!!.stopPagination()
                 } else {
-                    view!!.onShowImages(extractImages(imagesResponse))
+                    view!!.onShowImages(imagesResponse.data)
                     view!!.setRefreshing(false)
                 }
             },

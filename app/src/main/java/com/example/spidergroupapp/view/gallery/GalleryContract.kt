@@ -1,10 +1,10 @@
 package com.example.spidergroupapp.view.gallery
 
-import com.example.spidergroupapp.data.entity.Image
+import com.example.spidergroupapp.data.entity.Datum
 
 interface GalleryContract {
     interface View {
-        fun onShowImages(images: List<Image>)
+        fun onShowImages(images: List<Datum>)
         fun setRefreshing(flag: Boolean)
         fun stopPagination()
     }

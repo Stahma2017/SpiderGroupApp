@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.spidergroupapp.App
+import com.example.spidergroupapp.data.entity.Datum
 import com.example.spidergroupapp.data.entity.Image
 import com.example.spidergroupapp.view.gallery.adapter.ImagesAdapter
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
@@ -65,7 +66,7 @@ class GalleryFragment : Fragment(), GalleryContract.View, SwipyRefreshLayout.OnR
         swipeRefresh.isRefreshing = flag
     }
 
-    override fun onShowImages(images: List<Image>) {
+    override fun onShowImages(images: List<Datum>) {
         imagesAdapter.addImages(images)
     }
 
