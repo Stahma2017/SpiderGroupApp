@@ -5,6 +5,7 @@ import com.example.spidergroupapp.di.app.ApplicationComponent
 import com.example.spidergroupapp.di.app.ApplicationModule
 import com.example.spidergroupapp.di.app.DaggerApplicationComponent
 import com.example.spidergroupapp.di.gallery.GalleryComponent
+import com.example.spidergroupapp.di.imageDetails.ImageDetailsComponent
 import com.example.spidergroupapp.di.main.MainComponent
 
 class App : Application() {
@@ -20,6 +21,7 @@ class App : Application() {
 
     private var mainComponent: MainComponent? = null
     private var galleryComponent: GalleryComponent? = null
+    private var imageDetailsComponent: ImageDetailsComponent? = null
 
     fun createMaincomponent(): MainComponent {
         if (mainComponent == null) {
@@ -33,5 +35,12 @@ class App : Application() {
             galleryComponent = mainComponent?.addGalleryComponent()
         }
             return galleryComponent!!
+    }
+
+    fun createImageDetailsComponent(): ImageDetailsComponent{
+        if (imageDetailsComponent == null){
+            imageDetailsComponent = mainComponent?.addImageDetailsComponent()
+        }
+        return imageDetailsComponent!!
     }
 }

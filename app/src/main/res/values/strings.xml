@@ -6,4 +6,7 @@
     <!-- fragment tags -->
     <string name="fragment_gallery">Fragment Gallery</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
