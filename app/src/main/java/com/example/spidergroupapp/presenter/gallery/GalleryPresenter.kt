@@ -14,16 +14,40 @@ class GalleryPresenter(
 ) : GalleryContract.Presenter {
 
     private var view: GalleryContract.View? = null
+    private var currentPage = 0
 
     override fun attachView(view: GalleryContract.View) {
         this.view = view
     }
 
-    override fun getImages() {
-        val imagesDisp = imgurApi.getImages("0")
+    override fun loadNextPage() {
+        currentPage++
+        view?.setRefreshing(true)
+        getImages()
+    }
+
+    override fun refresh() {
+        currentPage = 0
+        view?.setRefreshing(true)
+        getImages()
+    }
+
+    override fun getImages(page: Int) {
+        val imagesDisp = imgurApi.getImages("$currentPage")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { imagesResponse -> view!!.onShowImages(extractImages(imagesResponse)) }
+            .subscribe({ imagesResponse ->
+                if (imagesResponse.data.isNullOrEmpty()) {
+                    view!!.stopPagination()
+                } else {
+                    view!!.onShowImages(extractImages(imagesResponse))
+                    view!!.setRefreshing(false)
+                }
+            },
+                {
+                    view!!.setRefreshing(false)
+                    currentPage--
+                })
         compositeDisposable.add(imagesDisp)
     }
 
@@ -32,11 +56,12 @@ class GalleryPresenter(
         compositeDisposable.dispose()
     }
 
-    private fun extractImages(response: ImagesResponseEntity): List<Image>{
-        val list : MutableList<Image> = ArrayList()
-        for (data in response.data!!){
+    private fun extractImages(response: ImagesResponseEntity): List<Image> {
+        val list: MutableList<Image> = ArrayList()
+        for (data in response.data!!) {
             data.images?.let { list.addAll(it) }
         }
         return list
     }
+
 }

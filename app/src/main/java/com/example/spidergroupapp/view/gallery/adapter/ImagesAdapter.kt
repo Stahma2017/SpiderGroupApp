@@ -12,10 +12,15 @@ import java.util.ArrayList
 
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
 
-    private var images: List<Image> = ArrayList()
+    private var images: MutableList<Image> = ArrayList()
 
-    fun setList(images: List<Image>) {
-        this.images = images
+   fun clear(){
+       images.clear()
+       notifyDataSetChanged()
+   }
+
+    fun addImages(images: List<Image>){
+        this.images.addAll(images)
         notifyDataSetChanged()
     }
 
@@ -36,7 +41,6 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
                 .load(image.link)
                 .fitCenter()
                 .into(itemView.imageView)
-
         }
     }
 }
