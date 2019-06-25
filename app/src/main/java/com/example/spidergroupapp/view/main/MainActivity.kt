@@ -3,14 +3,21 @@ package com.example.spidergroupapp.view.main
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.example.spidergroupapp.App
 import com.example.spidergroupapp.R
 import com.example.spidergroupapp.view.gallery.GalleryFragment
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
+
+    @Inject
+    lateinit var presenter: MainContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        (application as App).createMaincomponent().injectMainActivity(this)
+        presenter.attachView(this)
         init()
     }
 
@@ -30,5 +37,10 @@ class MainActivity : AppCompatActivity() {
             transaction.addToBackStack(tag)
         }
         transaction.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 }
