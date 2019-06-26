@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.spidergroupapp.App
 
@@ -43,6 +44,10 @@ class ImageDetailsFragment : Fragment(), ImageDetailsContract.View {
         val galleryId = extras?.getString(getString(R.string.intent_message))?: ""
         presenter.getComments(galleryId)
         presenter.getImageInfo(galleryId)
+    }
+
+    override fun showError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun showImageInfo(info: GalleryInfoResponseEntity) {

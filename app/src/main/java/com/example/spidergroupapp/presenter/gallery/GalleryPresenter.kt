@@ -1,6 +1,7 @@
 package com.example.spidergroupapp.presenter.gallery
 
 import com.example.spidergroupapp.data.network.ImgurApi
+import com.example.spidergroupapp.view.base.ErrorHandler
 import com.example.spidergroupapp.view.gallery.GalleryContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -8,7 +9,8 @@ import io.reactivex.schedulers.Schedulers
 
 class GalleryPresenter(
     private val compositeDisposable: CompositeDisposable,
-    private val imgurApi: ImgurApi
+    private val imgurApi: ImgurApi,
+    private val errorHandler: ErrorHandler
 ) : GalleryContract.Presenter {
 
     private var view: GalleryContract.View? = null
@@ -16,6 +18,7 @@ class GalleryPresenter(
 
     override fun attachView(view: GalleryContract.View) {
         this.view = view
+        errorHandler.attachView(view)
     }
 
     override fun loadNextPage() {
@@ -43,6 +46,7 @@ class GalleryPresenter(
                 }
             },
                 {
+                    errorHandler.proceed(it)
                     view!!.setRefreshing(false)
                     currentPage--
                 })
@@ -52,6 +56,7 @@ class GalleryPresenter(
     override fun detachView() {
         view = null
         compositeDisposable.dispose()
+        errorHandler.detachView()
     }
 
 }

@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.example.spidergroupapp.di.main.MainComponent
 import com.example.spidergroupapp.data.network.ImgurApi
+import com.example.spidergroupapp.view.base.BaseErrorHandler
+import com.example.spidergroupapp.view.base.ErrorHandler
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Component
 import dagger.Module
@@ -16,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 
-@Component(modules = [ApplicationModule::class, RxModule::class, NetworkModule::class])
+@Component(modules = [ApplicationModule::class, RxModule::class, NetworkModule::class, ErrorHandlerModule::class])
 interface ApplicationComponent{
     fun addMainComponent(): MainComponent
 }
@@ -34,6 +36,14 @@ class RxModule{
     @Provides
     fun provideCompositeDisposable(): CompositeDisposable {
         return CompositeDisposable()
+    }
+}
+
+@Module
+class ErrorHandlerModule{
+    @Provides
+    fun provideErrorHandler(context: Context): ErrorHandler {
+        return BaseErrorHandler(context)
     }
 }
 

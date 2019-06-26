@@ -63,7 +63,6 @@ class GalleryFragment : Fragment(), GalleryContract.View, SwipyRefreshLayout.OnR
         })
         imagesAdapter.imageClickListener = {
             (activity as MainActivity).navigateToImageDetails(it)
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -73,6 +72,10 @@ class GalleryFragment : Fragment(), GalleryContract.View, SwipyRefreshLayout.OnR
 
     override fun onShowImages(images: List<Datum>) {
         imagesAdapter.addImages(images)
+    }
+
+    override fun showError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun onRefresh(direction: SwipyRefreshLayoutDirection?) {
