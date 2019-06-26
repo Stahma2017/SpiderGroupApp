@@ -13,6 +13,7 @@ import java.util.ArrayList
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
 
     private var galleries: MutableList<Datum> = ArrayList()
+    var imageClickListener: (String) -> Unit = {}
 
    fun clear(){
        galleries.clear()
@@ -35,13 +36,14 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageViewHolder>() {
         vh.bind(galleries[i])
     }
 
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(gallery: Datum) {
             Glide.with(itemView)
                 .load(gallery.images?.get(0)?.link)
                 .placeholder(R.drawable.ic_placeholder)
                 .fitCenter()
                 .into(itemView.imageView)
+            itemView.imageCard.setOnClickListener { imageClickListener.invoke(gallery.id!!) }
         }
     }
 }

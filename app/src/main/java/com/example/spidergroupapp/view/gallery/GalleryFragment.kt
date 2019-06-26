@@ -7,10 +7,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.spidergroupapp.App
 import com.example.spidergroupapp.data.entity.Datum
-import com.example.spidergroupapp.data.entity.Image
 import com.example.spidergroupapp.view.gallery.adapter.ImagesAdapter
+import com.example.spidergroupapp.view.main.MainActivity
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection
 import kotlinx.android.synthetic.main.fragment_gallery.*
@@ -60,6 +61,10 @@ class GalleryFragment : Fragment(), GalleryContract.View, SwipyRefreshLayout.OnR
                 }
             }
         })
+        imagesAdapter.imageClickListener = {
+            (activity as MainActivity).navigateToImageDetails(it)
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun setRefreshing(flag: Boolean) {

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import com.example.spidergroupapp.App
 import com.example.spidergroupapp.R
 import com.example.spidergroupapp.view.gallery.GalleryFragment
+import com.example.spidergroupapp.view.imageDetails.ImageDetailsFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -37,6 +38,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             transaction.addToBackStack(tag)
         }
         transaction.commit()
+    }
+
+    fun navigateToImageDetails(galleryId: String){
+        doFragmentTransaction(ImageDetailsFragment(), "", true, galleryId)
     }
 
     override fun onDestroy() {
