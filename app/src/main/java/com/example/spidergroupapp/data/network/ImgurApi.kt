@@ -17,6 +17,4 @@ interface ImgurApi {
 
     @GET("gallery/album/{galleryId}")
     fun getGalleryInfo(@Path("galleryId") galleryId: String): Flowable<GalleryInfoResponseEntity>
-
-
 }

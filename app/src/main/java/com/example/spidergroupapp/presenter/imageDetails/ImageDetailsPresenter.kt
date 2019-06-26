@@ -45,13 +45,11 @@ class ImageDetailsPresenter(
            .subscribe({commentResponse ->view!!.showComments(filterTopComments(commentResponse))  },
                {
                    errorHandler.proceed(it)
-               }
-               )
+               })
         compositeDisposable.add(commentsDisp)
     }
 
     private fun filterTopComments(commentResponse: CommentsResponseEntity): List<String?>{
       return commentResponse.data!!.filter { it.ups!! >= 4 }?.map { it.comment}
     }
-
 }

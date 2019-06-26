@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -10,49 +9,49 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".view.imageDetails.ImageDetailsFragment"
-            android:padding="@dimen/margin_standard">
+            android:padding="@dimen/padding_standard">
         <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="26sp"
-                android:layout_marginTop="8dp"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/title"
+                android:layout_marginTop="@dimen/margin_large"/>
 
         <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="@dimen/margin_large"/>
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
             <TextView
-                    android:padding="4dp"
+                    android:padding="@dimen/padding_standard"
                     android:drawableStart="@drawable/ic_ups_black_24dp"
                     android:id="@+id/ups"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_standard"
+                    android:layout_marginTop="@dimen/margin_large"/>
 
             <TextView
                     android:drawableStart="@drawable/ic_downs_black_24dp"
                     android:layout_gravity="center_horizontal"
-                    android:padding="4dp"
+                    android:padding="@dimen/padding_standard"
                     android:id="@+id/downs"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/text_standard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
         </LinearLayout>
 
         <TextView
-                android:textColor="#000000"
-                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_large"
                 android:id="@+id/commentsTitle"
                 android:text="@string/popular_comments"
                 android:layout_width="wrap_content"

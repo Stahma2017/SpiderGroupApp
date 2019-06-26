@@ -2,4 +2,9 @@
 <resources>
     <dimen name="margin_standard">4dp</dimen>
     <dimen name="margin_small">2dp</dimen>
+    <dimen name="padding_standard">4dp</dimen>
+    <dimen name="margin_large">8dp</dimen>
+    <dimen name="title">26sp</dimen>
+    <dimen name="text_standard">14sp</dimen>
+    <dimen name="text_large">20sp</dimen>
 </resources>

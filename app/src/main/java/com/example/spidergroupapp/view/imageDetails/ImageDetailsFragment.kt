@@ -32,7 +32,6 @@ class ImageDetailsFragment : Fragment(), ImageDetailsContract.View {
         val view = inflater.inflate(R.layout.fragment_image_details, container, false)
         (activity!!.application as App).createImageDetailsComponent().injectImageDetailsFragment(this)
         presenter.attachView(this)
-
         return view
     }
 
@@ -70,6 +69,4 @@ class ImageDetailsFragment : Fragment(), ImageDetailsContract.View {
         super.onDestroyView()
         presenter.detachView()
     }
-
-
 }
